@@ -4,9 +4,15 @@ from PIL import Image
 import io
 import torchvision.transforms as transforms
 import torch.nn as nn
-
+from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
-
+app.add_middleware(
+        CORSMiddleware,
+        allow_origins=["*"],
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+)
 # CNN Model Definition
 class CNN(nn.Module):
     def __init__(self):
